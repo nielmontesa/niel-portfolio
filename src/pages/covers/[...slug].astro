@@ -1,0 +1,35 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
+
+// Create the static covers pages
+export async function getStaticPaths() {
+  const covers = await getCollection("covers");
+  return covers.map((cover) => ({
+    params: { slug: cover.slug },
+    props: cover,
+  }));
+}
+
+// Get the requested cover
+type Props = CollectionEntry<"covers">;
+const cover = Astro.props;
+const { title, summary } = cover.data;
+---
+
+<PageLayout title={title} description={summary}>
+  <TopLayout>
+    <div class="animate">
+      <ArticleTopLayout entry={cover} />
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={cover} />
+    </div>
+  </BottomLayout>
+</PageLayout>

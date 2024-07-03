@@ -30,14 +30,14 @@ html {
 
 html.dark {
   color-scheme: dark;
-  background-color: black;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
 html,
 body {
   @apply h-full w-full antialiased;
-  @apply bg-white dark:bg-black;
-  @apply text-black/75 dark:text-white/75;
+  @apply bg-white dark:bg-zinc-900;
+  @apply text-zinc-900/75 dark:text-white/75;
 }
 
 body {
@@ -45,7 +45,7 @@ body {
 }
 
 main {
-  @apply flex flex-col flex-1 bg-white dark:bg-black;
+  @apply flex flex-col flex-1 bg-white dark:bg-zinc-900;
 }
 
 header {
@@ -58,8 +58,8 @@ header:not(.scrolled) {
 }
 
 header.scrolled {
-  @apply bg-white/75 dark:bg-black/50;
-  @apply border-black/10 dark:border-white/25;
+  @apply bg-white/75 dark:bg-zinc-900/50;
+  @apply border-zinc-900/10 dark:border-white/25;
   @apply backdrop-blur-sm saturate-200;
 }
 
@@ -68,7 +68,7 @@ article {
 }
 
 .page-heading {
-  @apply font-semibold text-black dark:text-white;
+  @apply font-semibold text-zinc-900 dark:text-white;
 }
 
 .blend {

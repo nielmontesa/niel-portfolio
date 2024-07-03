@@ -7,6 +7,7 @@ tags:
 - Tutorial
 - Astro
 - Astro Sphere
+- Bruh
 ---
 ### Basics
 

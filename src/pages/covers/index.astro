@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import Covers from "@components/Covers";
+import { COVERS } from "@consts";
+
+const covers = (await getCollection("covers"))
+  .filter((cover) => !cover.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tags = [...new Set(covers.flatMap((cover) => cover.data.tags))].sort(
+  (a, b) => a.localeCompare(b),
+);
+---
+
+<PageLayout title={COVERS.TITLE} description={COVERS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate page-heading">
+      {COVERS.TITLE}
+    </div>
+  </TopLayout>
+  <div class="">
+    <div class="animate">
+      <Covers client:load tags={tags} data={covers} />
+    </div>
+  </div>
+</PageLayout>
